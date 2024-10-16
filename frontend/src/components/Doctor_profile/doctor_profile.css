@@ -1,0 +1,137 @@
+.profile-wrapper {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 340px;
+  height: 619px;
+  display: flex;
+  background: #ebfaf7 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  position: relative;
+  flex-direction: column;
+  padding-top: 50px;
+  justify-content: flex-start;
+}
+.profile-wrapper > .proficpic {
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+  border: 8px solid #ffffff;
+  position: relative;
+
+  margin-bottom: 45px;
+  margin-left: 75px;
+}
+.camera-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background-color: #007965;
+
+  border-radius: 60%;
+
+  border: 5px solid #ebfaf7;
+  top: 215px;
+  left: 145px;
+}
+.info {
+  display: flex;
+  gap: 15px;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.mobile,
+.messege {
+  width: 40px;
+  height: 40px;
+}
+.info > p {
+  text-align: left;
+  font: normal normal medium 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #0e1824;
+  font-size: 14.5px;
+}
+.info > p > span {
+  text-align: left;
+  font: normal normal 600 14px/21px Poppins;
+  letter-spacing: 0px;
+  color: #0e1824;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+.info > p {
+  font-weight: 600;
+}
+.gmail {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 1;
+}
+.google-gmail {
+  display: flex;
+  gap: 10px;
+  width: 260px;
+  align-items: center;
+  height: 40px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 2px solid #dbeae8;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+.google-gmail > p {
+  font-size: 12px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  margin-right: 25px;
+  font-weight: 600;
+  font-family: Poppins;
+}
+.google-gmail > img {
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
+}
+.calander-info {
+  color: #007965;
+  font-size: large;
+}
+.sync {
+  width: 188px;
+  height: 19px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  font: normal normal medium 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #0e1824b9;
+  margin-left: 27px;
+  font-size: 11px;
+  z-index: 1;
+  margin-top: 10px;
+  padding: 1px;
+  font-weight: 650;
+  text-align: center;
+}
+.sync > span {
+  font: italic normal normal 10px/16px Poppins;
+  letter-spacing: 0px;
+  color: #4d4d4d;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.bottompic {
+  position: absolute;
+  bottom: 0;
+}

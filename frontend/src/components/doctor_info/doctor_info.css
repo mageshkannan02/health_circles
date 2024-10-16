@@ -1,0 +1,40 @@
+
+.info-wrapper{
+    width: 500px;
+     margin-left: 20px;
+    height: 665px;
+    margin-top: 20px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.count{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px;
+    position: relative;
+}
+.count>h6{
+    font-weight: 700;
+    margin: 0;
+}
+.count>p{
+    padding: 1px 7px;
+    margin: 0;
+    color: white;
+    background-color: black;
+    border-radius: 60px;
+    font-size: small;
+    
+    
+}
+.count>span{
+    position: absolute;
+    color: red;
+    font-size: 13px;
+    right: 0;
+}
+

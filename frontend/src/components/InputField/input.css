@@ -1,0 +1,26 @@
+.input-div{
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    gap: 7px;
+     
+}
+.input-div>input,textarea{
+    padding: 10px;
+    border-radius: 7px;
+    outline: none;
+    border: 2px solid #DBEAE8;
+    font-weight: 550;
+}
+.input-div>input::placeholder,textarea::placeholder{
+    font-size: 15px;
+    font-weight: 400;
+    color: #B2B2B2;
+}
+.input-div>label{
+    font-size: 12px;
+    font-weight: 450;
+}
+.input-div>label>span{
+    color: red;
+}

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ :root {
+   
+ 
+  padding: 0 !important;
+  margin: 0 !important;
+  --unnamed-color-f44f5a: #F44F5A;
+  --unnamed-color-ff980e: #FF980E;
+  --unnamed-color-25c460: #25C460;
+  --unnamed-color-e3e3e3: #E3E3E3;
+  --field-border-dbeae8: #DBEAE8;
+  --divider-dbdbdb: #DBDBDB;
+  --disabled-text-b7b7b7: #B7B7B7;
+  --placeholder-text-c5c5c5: #C5C5C5;
+  --tertiary-text-808080: #808080;
+  --secondary-text-4d4d4d: #4D4D4D;
+  --primary-text-0e1824: #0E1824;
+  --field-label-262c33: #262C33;
+  --unnamed-color-f58634: #F58634;
+  --unnamed-color-0f0b11: #0F0B11;
+  --unnamed-color-007965: #007965;
+  
+  
+}
+::-webkit-scrollbar{
+  display: none;
+}
+ 
