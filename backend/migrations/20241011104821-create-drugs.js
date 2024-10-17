@@ -22,13 +22,7 @@ module.exports = {
       },
      
        
-      dose_id: {
-        type: Sequelize.INTEGER,
-        references:{
-          model:'medicine_dose_masters',
-          key:'id'
-        }
-      },
+       
       drug_timing_id: {
         type: Sequelize.INTEGER,
         references:{

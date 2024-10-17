@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell,faUser  } from "@fortawesome/free-regular-svg-icons";
+import { faBell  } from "@fortawesome/free-regular-svg-icons";
 import profile from '../../assets/Doctor Profile.svg'
 
 const RxGroup_nav = () => {

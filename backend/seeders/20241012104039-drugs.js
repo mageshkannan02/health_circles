@@ -8,7 +8,7 @@ module.exports = {
         id: uuidv4(),  // Generate unique UUID
         drug_catagery_id: 1,  // Reference to `drug_catagory_masters`
         name: 'Paracetamol',
-        dose_id: 1,  // Reference to `medicine_dose_masters`
+         // Reference to `medicine_dose_masters`
         drug_timing_id: 1,  // Reference to `medicine_timing_masters`
         drug_frequency_id: 1,  // Reference to `medicine_frequency_masters`
         drug_prandial_id: 1,  // Reference to `medicine_prandial_masters`
@@ -24,7 +24,7 @@ module.exports = {
         id: uuidv4(),  // Generate another unique UUID
         drug_catagery_id: 2,  // Reference to `drug_catagory_masters`
         name: 'Ibuprofen',
-        dose_id: 2,  // Reference to `medicine_dose_masters`
+          // Reference to `medicine_dose_masters`
         drug_timing_id: 2,  // Reference to `medicine_timing_masters`
         drug_frequency_id: 2,  // Reference to `medicine_frequency_masters`
         drug_prandial_id: 2,  // Reference to `medicine_prandial_masters`

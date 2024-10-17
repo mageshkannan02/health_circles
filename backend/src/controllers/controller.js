@@ -14,7 +14,8 @@ const {
   rx_groups,
   status_master,
   rx_group_drugs,
-} = require('../models');
+  sequelize,
+} = require('../../models');
 
 const gethospitals = async (req, res) => {
   try {
@@ -89,32 +90,90 @@ const get_status = async (req, res) => {
     res.send('An error occurred:', error);
   }
 };
+const get_drugs = async (req, res) => {
+  try {
+    const response = await drugs.findAll({
+      include: [
+        {
+          model: medicine_dose_master,
+          as: 'drug_dose',
+        },
+      ],
+    });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send({ error: error });
+
+    console.log(error);
+  }
+};
+const post_drugs = async (req, res) => {
+  const result = await sequelize.transaction(async (t) => {
+    const { dose_id } = req.body;
+    try {
+      const data = await drugs.create(req.body);
+      const dose = await dose_id.map((id) => {
+        rx_group_drugs.create({
+          drug_id: data.id,
+          dose_id: id,
+        });
+      });
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({ error: error });
+      console.log(error);
+    }
+  });
+};
 const post_rx_groups = async (req, res) => {
   const { drug_id, doctor_id, name } = req.body;
-  console.log(req.body);
-  
-  
+  const result = await sequelize.transaction(async (t) => {
     try {
-      const data = await rx_groups.bulkCreate(req.body);
-      const rx_groups_drugs= await data.map((rxgroup)=>{
-           rx_group_drugs.create({
-            "rx_group_id":rxgroup.id,
-            "drug_id":rxgroup.drug_id
-           })
-      })
-      
-     
-      
+      const data = await rx_groups.bulkCreate(req.body, { transaction: t });
+      const rx_groups_drugs = await data.map((rxgroup) => {
+        rx_group_drugs.create(
+          {
+            rx_group_id: rxgroup.id,
+            drug_id: rxgroup.drug_id,
+          },
+          { transaction: t }
+        );
+      });
+
       res.send(data);
       console.log(data);
     } catch (error) {
       console.log(error);
-  
+
       return res.status(500).json({ error: error });
     }
-  
- 
+  });
 };
+const post_rx_associations = async (req, res) => {
+  const { contents } = req.body;
+  const result = await sequelize.transaction(async (t) => {
+    try {
+      const data = await rx_group_associations.bulkCreate(contents, {
+        transaction: t,
+      });
+
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).json({ error: error.messege });
+    }
+  });
+};
+const post_presription=async (req,res)=>{
+  const result=await sequelize.transaction(async t=>{
+    const {prescription}=req.body;
+     try {
+      const data=await prescriptions.bulkCreate(prescription,{transaction:t})
+      res.status(200).send(data)
+     } catch (error) {
+      res.status(500).send({error:error})
+     }
+  })
+}
 const get_doctors = async (req, res) => {
   const data = await doctors.findAll({
     include: [
@@ -135,49 +194,49 @@ const get_doctors = async (req, res) => {
   res.send(data);
 };
 
-const get_rx_groups=async(req,res)=>{
-     const response=await rx_groups.findAll({
-            include:[
-              {
-                model:drugs,
-                as:'drugs'
-              }
-            ]
-     })
-     res.send(response)
-}
-
-const get_associations=async(req,res)=>{
-  const response=await rx_group_associations.findAll({
-      include:[
-        {
-          model:rx_groups,
-          as:'rx_groups'
-        }
-      ]
-  })
-  res.send(response)
-}
-
-const get_prescription=async(req,res)=>{
-  const response=await prescriptions.findAll({
-    include:[
+const get_rx_groups = async (req, res) => {
+  const response = await rx_groups.findAll({
+    include: [
       {
-        model:drugs,
-        as:'drugs'
+        model: drugs,
+        as: 'drugs',
       },
-       {
-         model:rx_groups,
-         as:'rx_groups'
-       },
-       {
-         model:rx_group_associations,
-         as:'rx_group_associations' 
-       }
-    ]
-  })
-  res.send(response)
-}
+    ],
+  });
+  res.send(response);
+};
+
+const get_associations = async (req, res) => {
+  const response = await rx_group_associations.findAll({
+    include: [
+      {
+        model: rx_groups,
+        as: 'rx_groups',
+      },
+    ],
+  });
+  res.send(response);
+};
+
+const get_prescription = async (req, res) => {
+  const response = await prescriptions.findAll({
+    include: [
+      {
+        model: drugs,
+        as: 'drugs',
+      },
+      {
+        model: rx_groups,
+        as: 'rx_groups',
+      },
+      {
+        model: rx_group_associations,
+        as: 'rx_group_associations',
+      },
+    ],
+  });
+  res.send(response);
+};
 
 module.exports = {
   gethospitals,
@@ -189,6 +248,13 @@ module.exports = {
   get_medicine_prandial,
   get_medicine_timing,
   get_status,
+  get_drugs,
   post_rx_groups,
-  get_doctors,get_rx_groups,get_associations,get_prescription
+  get_doctors,
+  get_rx_groups,
+  get_associations,
+  get_prescription,
+  post_rx_associations,
+  post_drugs,
+  post_presription
 };

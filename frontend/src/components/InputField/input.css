@@ -1,7 +1,8 @@
 .input-div{
     display: flex;
     flex-direction: column;
-    width: 480px;
+    width: 473px;
+    
     gap: 7px;
      
 }
@@ -10,16 +11,24 @@
     border-radius: 7px;
     outline: none;
     border: 2px solid #DBEAE8;
-    font-weight: 550;
+    font: normal normal medium 16px/25px Poppins;
+letter-spacing: 0px;
+color: #0E1824;
+font-weight: 600;
+
+    
 }
 .input-div>input::placeholder,textarea::placeholder{
-    font-size: 15px;
-    font-weight: 400;
-    color: #B2B2B2;
+    font: normal normal normal 14px/21px Poppins;
+    letter-spacing: 0px;
+    color: #C5C5C5;
 }
 .input-div>label{
-    font-size: 12px;
-    font-weight: 450;
+     
+    font: normal normal normal 12px/18px Poppins;
+letter-spacing: 0px;
+color: #262C33;
+text-transform: capitalize;
 }
 .input-div>label>span{
     color: red;

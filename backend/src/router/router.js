@@ -17,7 +17,11 @@ router.get('/doctors', Controller.get_doctors);
 router.get('/rxgroups',Controller.get_rx_groups)
 router.get('/rxassociations',Controller.get_associations)
 router.get('/prescription',Controller.get_prescription)
+router.get('/drugs',Controller.get_drugs)
 
 router.post('/addrxgroups', Controller. post_rx_groups);
+router.post('/addrxassociation', Controller. post_rx_associations);
+router.post('/addDrugs', Controller.post_drugs);
+router.post('/addprescription', Controller.post_presription);
 
 module.exports = router;

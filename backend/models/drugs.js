@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       drug_catagery_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
-       dose_id: DataTypes.INTEGER,
+       
       drug_timing_id: DataTypes.INTEGER,
       drug_frequency_id: DataTypes.INTEGER,
       drug_prandial_id: DataTypes.INTEGER,
