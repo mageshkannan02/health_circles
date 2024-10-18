@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.confirm-background{
+    width: 100vw;
+    height: 100vh;
+    background: #00000066 0% 0% no-repeat padding-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.confirm_wrapper{
+    width: 426px;
+height: 250px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px -10px 10px #0000000A;
+border: 1px solid #E2E2E2;
+border-radius: 8px;
+display: flex;
+ align-items: center;
+ flex-direction: column;
+justify-content: center;
+ 
+ 
+}
+.confirm_wrapper>h4{
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;letter-spacing: 0px;
+color: #0E1824;
+margin: 0;
+font-weight: 500;
+font-size: 20px;
+margin-bottom: 12px;
+font-size: 17px;
+}
+.confirm_wrapper>.info{
+    text-align: center;
+font: normal normal normal 16px/25px Poppins;
+letter-spacing: 0px;
+color: #808080;
+font-weight: 400;
+}
+.confirm_buttons{
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    align-items:center;
+}
+.confirm_buttons>.cancel{
+    width: 150px;
+height: 42px;
+ outline: none;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 2px solid #007965;
+border-radius: 8px;
+text-align: center;
+font: normal normal medium 14px/21px Poppins;
+letter-spacing: 0px;
+color: #007965;
+text-transform: uppercase;
+ 
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0.1px;
+}
+.button-inactive{
+    outline: none;
+    width: 155px;
+    height: 42px;
+    background: var(--unnamed-color-f44f5a) 0% 0% no-repeat padding-box !important;
+background: #F44F5A 0% 0% no-repeat padding-box !important;
+border-radius: 8px;
+font: normal normal medium 14px/21px Poppins !important;
+letter-spacing: 0px;
+color: #FFFFFF !important;
+text-transform: uppercase !important;
+border: none;
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0.1px;
+}
+ 

@@ -1,5 +1,26 @@
-.rxgroup_nav_wrapper{
-    display: flex;
-    flex-direction: column;
-     
+.rxgroup_nav_wrapper {
+  display: flex;
+   justify-content: space-between;
+   width: 100%;
+   
+  padding: 10px 20px;
+  align-items: center;
+  border-bottom: 2px solid #E2E2E2;
+  
 }
+.rxgroup_nav_wrapper>.icons{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.rxgroup_nav_wrapper>h4{
+    text-align: left;
+font: normal normal 600 20px/30px Poppins;
+letter-spacing: 0px;
+color: #0F0B11;
+}
+.icons>img{
+    width: 16px;
+height: 20px;
+}
+ 

@@ -1,14 +1,36 @@
-import React from 'react'
+import {useState} from "react";
+import DrugNav from "../drug_nav/DrugNav";
+import Drug_footer from "../drug_footer/Drug_footer";
+import "./create_rxgroup.css";
 
-const Create_rxGroup = () => {
+const Create_rxGroup = ({ setisList, onGroupNameChange }) => {
+  const [groupName, setGroupName] = useState("");
+
+  const handleInputChange = (e) => {
+    setGroupName(e.target.value);
+    onGroupNameChange(e.target.value);
+  };
+
   return (
-     <>
-     <div className="create_rxgroup_wrapper">
-        <p>RX Group Name</p>
-        <input type="text" placeholder='Group Name' />
-     </div>
-     </>
-  )
-}
+    <>
+      {" "}
+      <div className="create_rx_group_bg">
+        <div className="create_rxgroup_wrapper">
+          <DrugNav />
+          <div className="create_rxgroup_body">
+            <p>RX Group Name</p>
+            <input
+              type="text"
+              placeholder="Group Name"
+              value={groupName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <Drug_footer setisList={setisList} />
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default Create_rxGroup
+export default Create_rxGroup;

@@ -1,0 +1,27 @@
+.drug_footer{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 1px;
+    padding: 10px;
+    height: 70px;
+    gap: 10px;
+     
+    border-top: 2px solid #E3E3E3;
+}
+.drug_footer>button{
+    width: 67px;
+    height: 40px;
+    background: #007965 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    font: normal normal medium 14px/21px Poppins;
+letter-spacing: 0px;
+color: #FFFFFF;
+text-transform: uppercase;
+margin-left: 88%;
+font-size: 14px;
+font-weight: 550;
+}

@@ -1,6 +1,9 @@
 import React from 'react'
 import trash from '../../assets/icons8-trash.svg'
 import edit from '../../assets/icons8-edit.svg'
+import './rx_group_info.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 const RxGroupInfo = () => {
   return (
@@ -19,17 +22,16 @@ const RxGroupInfo = () => {
                         <p>0 -0 -1</p>
                         <p>10 mins - After Food</p>
                         <p>Alternate Day for 67 Day(s)</p>
-                        <p> 1 Qty</p>
-                        <img src={trash} alt="" />
-                        <img src={edit} alt="" />
+                        <p className='qty'> 1 Qty</p>
+                        <img src={trash} alt="" className='trash' />
+                        <img src={edit} alt="" className='edit' />
 
 
                      </div>
                  </div>
            </div>
            <div className="add_button">
-            <p>+</p>
-            <h6>Add Drugs</h6>
+           <FontAwesomeIcon icon={faPlus} style={{color: "#ffffff",}} className='plus'/>            <h6>Add Drugs</h6>
            </div>
        </div>
      </div>

@@ -1,23 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Chip from "@mui/material/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
-import "../doctor_info/doctor_info.css";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchHospitals, fetchLanguages, fetchSpecialties } from "../../slices/ApiSlice";
 
-const top100Films = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Inception", year: 2010 },
-  { title: "Fight Club", year: 1999 },
-  { title: "Pulp Fiction", year: 1994 },
-];
-
-// Custom styled Chip component
 const StyledChip = styled(Chip)(({ theme }) => ({
   width: "473px",
   height: "40px",
@@ -27,13 +17,12 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   border: "1px solid #E3E3E3",
   borderRadius: "4px",
   "& .MuiChip-label": {
-     
-    fontWeight: "500",  
-    fontSize: "14px", 
-    lineHeight: "21px",  
-    fontFamily: "Poppins",  
-    letterSpacing: "0px", 
-    color: "#0E1824", 
+    fontWeight: "500",
+    fontSize: "14px",
+    lineHeight: "21px",
+    fontFamily: "Poppins",
+    letterSpacing: "0px",
+    color: "#0E1824",
   },
   "& .MuiChip-deleteIcon": {
     color: "black",
@@ -46,19 +35,32 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 export default function LimitTags({
   label,
   placeholder,
-  onchange,
   asterix,
   count_info,
-  count,
 }) {
-  const [selectedFilms, setSelectedFilms] = useState([]);
+  const dispatch = useDispatch();
+  const [selectedItems, setSelectedItems] = useState([]);
 
-  const cancel = () => {
-    setSelectedFilms([]);
-  };
+   
+  const hospitals = useSelector((state) => state.medical.hospitals);
+  const languages = useSelector((state) => state.medical.languages);
+  const specialties = useSelector((state) => state.medical.specialties);
+  
+  
+
+  useEffect(() => {
+    
+    dispatch(fetchHospitals());
+    dispatch(fetchLanguages());
+    dispatch(fetchSpecialties());
+  }, [dispatch]);
 
   const handleChange = (event, newValue) => {
-    setSelectedFilms(newValue);
+    setSelectedItems(newValue);
+  };
+
+  const cancel = () => {
+    setSelectedItems([]);
   };
 
   return (
@@ -70,9 +72,10 @@ export default function LimitTags({
         <Autocomplete
           multiple
           limitTags={2}
-          options={top100Films}
-          getOptionLabel={(option) => option.title}
-          value={selectedFilms}
+          options={label === "Working At" ? hospitals :label==="Languages Known"?languages:label==="Specialitity"?specialties:[]}
+
+          getOptionLabel={(option) => option.name || option.title}
+          value={selectedItems}
           onChange={handleChange}
           renderTags={() => null}
           renderInput={(params) => (
@@ -128,7 +131,7 @@ export default function LimitTags({
 
         <div className="count">
           <h6>{count_info}</h6>
-          <p>{selectedFilms.length}</p>
+          <p>{selectedItems.length}</p>
           <span onClick={cancel}>CLEAR ALL</span>
         </div>
 
@@ -140,14 +143,14 @@ export default function LimitTags({
             width: "100%",
           }}
         >
-          {selectedFilms.map((film) => (
+          {selectedItems.map((item) => (
             <StyledChip
-              key={film.title}
-              label={film.title}
+              key={item.name || item.title}
+              label={item.name || item.title}
               onDelete={() =>
-                setSelectedFilms((prev) =>
+                setSelectedItems((prev) =>
                   prev.filter(
-                    (selectedFilm) => selectedFilm.title !== film.title
+                    (selectedItem) => selectedItem.name !== item.name
                   )
                 )
               }

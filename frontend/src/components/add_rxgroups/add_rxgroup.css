@@ -1,0 +1,183 @@
+.add_rxgroup_wrapper{
+    margin: 20px;
+    position: fixed;
+}
+.add_rxgroup_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #E2E2E2;
+}
+.add_rxgroup_nav>h5{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: normal normal 600 16px/25px Poppins;
+letter-spacing: 0px;
+color: #0E1824;
+}
+
+.add_rxgroup_nav>h5>img{
+    width: 32px;
+height: 32px;
+}
+.add_rxgroup_nav>button{
+    width: 67px;
+height: 36px;
+ background: #007965 0% 0% no-repeat padding-box;
+border-radius: 8px;
+outline: none ;
+border: none;
+font: normal normal medium 14px/21px Poppins;
+letter-spacing: 0px;
+color: #FFFFFF;
+text-transform: uppercase;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 1px;
+}
+.search-items{
+    position: relative;
+    margin: 15px;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    width: 96%;
+height: 44px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 2px solid #E2E2E2;
+border-radius: 8px;
+padding: 0px 10px;
+}
+.search-items>ul{
+    display: flex;
+    align-items: center;
+    gap: 10px   ;
+    margin: 0;
+}
+.search-items>ul>li{
+    list-style: none;
+    margin: 0   ;
+}
+.search-items>input{
+    width: 65%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+
+}
+.drug_search{
+    position: absolute;
+    right: 5px;
+    border-left: 1px solid #E2E2E2;
+    padding: 12px 10px;
+
+    
+}
+.search-items>input::placeholder{
+    font: normal normal normal 14px/21px Poppins;
+letter-spacing: 0px;
+color: #C5C5C5;
+}
+.search-items>ul>li{
+    
+ 
+ padding: 2px 13px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #E2E2E2;
+border-radius: 8px;
+text-align: center;
+font-family: 'Poppins', sans-serif;
+font-style: normal;
+font-weight: 500;  
+font-size: 14px;
+ 
+letter-spacing: 0px;
+color: #007965  ;
+
+}
+.active_select{
+    
+    color: white !important;
+    background-color: #007965 !important;
+    border: 1px solid transparent !important;
+    
+}
+.add_rxgroup_wrapper>p{
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;  
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0px;
+    color: #888888;
+    
+    margin-left: 20px;
+}
+.title>table{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.title>table>thead>tr{
+    display: flex;
+    width: 921px;       
+height: 38px;
+background: #ECECEC 0% 0% no-repeat padding-box;
+border-radius: 8px;
+align-items: center;
+margin-left: 20px;
+justify-content: space-between;
+  padding: 10px;
+   
+ 
+}
+.title>table>tbody>tr{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    width: 921px;
+height: 45px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #E2E2E2;
+border-radius: 8px;
+padding: 10px;
+ gap: 50px;    
+ 
+}
+.drug_show{
+    width: 96%;
+    height: 100px;
+    overflow: scroll;
+    background-color: aqua;
+    margin: 0px 20px;
+}
+
+.title>table>thead>tr>td{
+     
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 550; /* Medium */
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    
+ 
+}
+.title>table>tbody>tr>td{
+     
+    font: normal normal 600 14px/21px Poppins;
+letter-spacing: 0px;
+color: #0E1824; 
+ 
+}
+ 
+.title>table>tbody>tr>td>img{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}

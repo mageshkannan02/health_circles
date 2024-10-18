@@ -1,0 +1,24 @@
+.drug_nav{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #E3E3E3;
+    border-radius: 8px 8px 0px 0px;
+}
+.drug_nav>p{
+     
+    font: normal normal 600 16px/25px Poppins;
+letter-spacing: 0px;
+color: #0E1824;
+text-transform: uppercase;
+font-size: 16px;
+margin: 0;
+}
+.drug_nav>i{
+    font-size: 25px;
+     color: rgb(32, 32, 32);
+     
+}
