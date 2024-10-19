@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import './drug_nav.css'
 
-const DrugNav = () => {
+const DrugNav = ({name,setPopActive}) => {
   return (
     <>
       <div className="drug_nav">
-        <p>Rename rx group</p>
-        <i><FontAwesomeIcon icon={faXmark}   /></i>
+        <p>{name}</p>
+        <i><FontAwesomeIcon icon={faXmark} onClick={()=>setPopActive(false)}  /></i>
 
       </div>
     </>

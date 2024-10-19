@@ -1,8 +1,9 @@
 .rx_group_wrapper{
-    display: flex;
-     
     
-    gap: 20px;
+    height: 700px;
+}
+.rx_group_empty_wrapper{
+    height: fit-content;
 }
 .rx_group_empty_wrapper>img{
     width: 146px;

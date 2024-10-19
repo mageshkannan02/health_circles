@@ -1,15 +1,27 @@
-import React from 'react'
-import './drug_footer.css'
+import React from "react";
+import "./drug_footer.css";
 
-const Drug_footer = ({setisList}) => {
+const Drug_footer = ({ cancel,setPopActive,value,setRxgroupName }) => {
+  const handlesendrxgroupName=()=>{
+    if(!value){
+      setPopActive(true)
+    }
+    else{
+
+      setPopActive(false)
+      setRxgroupName(value);
+    }
+
+  }
   return (
     <>
-    <div className="drug_footer">
-        {/* <button>CANCEL</button> */}
-        <button onClick={()=>setisList(true)}>SAVE</button>
-    </div>
-    </>
-  )
-}
+      <div className="drug_footer">
+        {cancel === "true" && <button className="cancel">CANCEL</button>}
 
-export default Drug_footer
+        <button onClick={handlesendrxgroupName} className="save">SAVE</button>
+      </div>
+    </>
+  );
+};
+
+export default Drug_footer;

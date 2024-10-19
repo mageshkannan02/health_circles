@@ -1,10 +1,11 @@
 .create_rx_group_bg {
   position: fixed;
-  background-color: rgb(0, 0, 0,0.2);
-  height: 100%;
   width: 65%;
+  height: 100%;
+   background-color: rgba(0, 0, 0, 0.1);
+ 
   display: flex;
-
+    
   align-items: center;
   justify-content: center;
 }
@@ -13,7 +14,7 @@
   flex-direction: column;
   width: 640px;
   height: 274px;
-  border: 1px solid var(--unnamed-color-e3e3e3);
+  margin-top: 10px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px -10px 10px #0000000a;
   border: 1px solid #e3e3e3;

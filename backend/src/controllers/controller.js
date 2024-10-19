@@ -98,6 +98,10 @@ const get_drugs = async (req, res) => {
           model: medicine_dose_master,
           as: 'drug_dose',
         },
+        {
+          model: drug_catagory_master,
+          as: 'drug_catagery',
+        },
       ],
     });
     res.status(200).send(response);
@@ -108,47 +112,62 @@ const get_drugs = async (req, res) => {
   }
 };
 const post_drugs = async (req, res) => {
-  const result = await sequelize.transaction(async (t) => {
-    const { dose_id } = req.body;
-    try {
-      const data = await drugs.create(req.body);
-      const dose = await dose_id.map((id) => {
-        rx_group_drugs.create({
-          drug_id: data.id,
-          dose_id: id,
-        });
-      });
-      res.status(200).send(data);
-    } catch (error) {
-      res.status(500).send({ error: error });
-      console.log(error);
-    }
-  });
+  const { dose_id } = req.body;
+
+  try {
+    const result = await sequelize.transaction(async (t) => {
+      const data = await drugs.create(req.body, { transaction: t });
+
+      await Promise.all(
+        dose_id.map((id) => {
+          return rx_group_drugs.create(
+            {
+              drug_id: data.id,
+              dose_id: id,
+            },
+            { transaction: t }
+          );
+        })
+      );
+
+      return data;
+    });
+
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: error.message });
+  }
 };
+
 const post_rx_groups = async (req, res) => {
   const { drug_id, doctor_id, name } = req.body;
-  const result = await sequelize.transaction(async (t) => {
-    try {
-      const data = await rx_groups.bulkCreate(req.body, { transaction: t });
-      const rx_groups_drugs = await data.map((rxgroup) => {
-        rx_group_drugs.create(
+  const t = await sequelize.transaction();
+
+  try {
+    const data = await rx_groups.bulkCreate(req.body, { transaction: t });
+
+    await Promise.all(
+      data.map((rxgroup) => {
+        return rx_group_drugs.create(
           {
             rx_group_id: rxgroup.id,
             drug_id: rxgroup.drug_id,
           },
           { transaction: t }
         );
-      });
+      })
+    );
 
-      res.send(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-
-      return res.status(500).json({ error: error });
-    }
-  });
+    await t.commit();
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+    await t.rollback();
+    return res.status(500).json({ error: error });
+  }
 };
+
 const post_rx_associations = async (req, res) => {
   const { contents } = req.body;
   const result = await sequelize.transaction(async (t) => {
@@ -163,17 +182,19 @@ const post_rx_associations = async (req, res) => {
     }
   });
 };
-const post_presription=async (req,res)=>{
-  const result=await sequelize.transaction(async t=>{
-    const {prescription}=req.body;
-     try {
-      const data=await prescriptions.bulkCreate(prescription,{transaction:t})
-      res.status(200).send(data)
-     } catch (error) {
-      res.status(500).send({error:error})
-     }
-  })
-}
+const post_presription = async (req, res) => {
+  const result = await sequelize.transaction(async (t) => {
+    const { prescription } = req.body;
+    try {
+      const data = await prescriptions.bulkCreate(prescription, {
+        transaction: t,
+      });
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({ error: error });
+    }
+  });
+};
 const get_doctors = async (req, res) => {
   const data = await doctors.findAll({
     include: [
@@ -256,5 +277,5 @@ module.exports = {
   get_prescription,
   post_rx_associations,
   post_drugs,
-  post_presription
+  post_presription,
 };

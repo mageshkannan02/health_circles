@@ -31,6 +31,13 @@ module.exports = (sequelize, DataTypes) => {
 
   rx_groups.init(
     {
+      id:{
+        allowNull: false,
+        
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4, 
+      },
       name: DataTypes.STRING,
       doctor_id: DataTypes.UUID,
       drug_id:DataTypes.UUID,

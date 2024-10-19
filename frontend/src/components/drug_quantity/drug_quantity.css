@@ -1,0 +1,211 @@
+.drug_quantity_wrapper{
+    position: fixed;
+    background-color: rgba(0, 0,0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+     
+}
+.drug_quantity_body{
+    width: 542px;
+height: 397px;
+ position: relative;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px -10px 10px #0000000A;
+border: 1px solid #E3E3E3;
+border-radius: 8px;
+display: flex;
+flex-direction: column;
+
+ 
+ 
+}
+.days{
+    display: flex;
+    gap: 10px;
+}
+.drug_quantity_body>.days>ul{
+    display: flex;
+    column-gap: 10px;
+  padding-left: 20px;
+    align-items: center;
+}
+.drug_quantity_body>.days>ul>li{
+    list-style: none;
+    width: 32px;
+    text-align: center;
+     padding-top: 10px;
+     height: 40px;
+     font: normal normal medium 14px/21px Poppins;font-family: 'Poppins', sans-serif;
+     font-size: 14px;
+     font-weight: 500;  
+     line-height: 21px;
+     letter-spacing: 0px;
+     color: #0E1824;
+border: 1px solid #E3E3E3;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border-radius: 8px;
+}
+.drug_quantity_body>.days{
+    display: flex;
+    
+}
+.drug_quantity_body>p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;  
+    line-height: 25px;
+    letter-spacing: 0px;
+    color: #0E1824;
+padding: 10px 10px 10px 20px;
+margin: 0;
+}
+.days_filter{
+     display: flex;
+     align-items: center;
+     column-gap: 10px;
+     margin-top: -15px;
+     
+     padding-left: 5px;
+      
+      
+}
+.days_line{
+    border-left: 2px solid  #E8E8E8;
+    width: 1px;
+    height: 35px;
+    margin-top: 18px;
+    border-radius: 5px;
+     
+}
+ 
+.days_filter>.days_active{
+    background: #007965 0% 0% no-repeat padding-box !important;
+border-radius: 8px;
+padding: 5px 10px;
+border: none !important;
+font-family: Poppins, sans-serif !important;
+font-size: 14px !important;
+font-weight: 500 !important;  
+line-height: 21px !important;
+letter-spacing: 0px;
+color: #FFFFFF !important;
+outline: none;
+
+ 
+}
+.days_filter>button{
+    padding: 5px 10px;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500; 
+    line-height: 21px;
+    letter-spacing: 0px;
+    color: #0E1824;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    outline: none;
+}
+.custom_qty{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 10px;
+}
+.custom_qty>p{
+    margin: 0;
+    width: 83px;
+height: 38px;
+text-align: center;
+padding-top: 8px;
+background: #007965 0% 0% no-repeat padding-box;
+border-radius: 8px;
+
+font-family: Poppins, sans-serif;
+font-size: 14px;
+font-weight: 500; 
+line-height: 21px;
+letter-spacing: 0px;
+color: #FFFFFF;
+ 
+}
+.custom_qty>.custom_count{
+    display: flex;
+    margin: 0;
+    align-items: center;
+    width: 124px;
+height: 40px;
+border: 1px solid var(--unnamed-color-e3e3e3);
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #E3E3E3;
+border-radius: 8px;
+  
+}
+.custom_count>p{
+    margin: 0;
+}
+.custom_count>img{
+   
+ padding: 0px 10px;
+}
+.custom_count>p{
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500; 
+    line-height: 21px;
+    letter-spacing: 0px;
+    color: #0E1824;
+    padding: 0px 20px;
+    height: 100%;
+   padding-top: 10px;
+    border-left: 1px solid #E3E3E3;
+    border-right: 1px solid #E3E3E3;
+    
+}
+.qty{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.qty_count{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   margin-top: 5px;
+    width: 81px;
+height: 40px;
+ background: #E3E3E3 0% 0% no-repeat padding-box;
+border-radius: 8px;
+}
+.qty>p{
+    margin: 0;
+    font: normal normal 600 16px/25px Poppins;
+letter-spacing: 0px;
+color: #0E1824;
+}
+.qty_count>h6{
+    margin: 0;
+    font-family: Poppins, sans-serif;
+font-size: 14px;
+font-weight: 500;  
+line-height: 21px;
+letter-spacing: 0px;
+color: #0E1824;
+
+}
+.qty_count>p{
+    margin: 0;
+    font-family: Poppins, sans-serif;
+font-size: 14px;
+font-weight: 500;  
+line-height: 21px;
+letter-spacing: 0px;
+color: #888888;
+
+    
+}

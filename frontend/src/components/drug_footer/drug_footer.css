@@ -10,7 +10,7 @@
      
     border-top: 2px solid #E3E3E3;
 }
-.drug_footer>button{
+.drug_footer>.save{
     width: 67px;
     height: 40px;
     background: #007965 0% 0% no-repeat padding-box;
@@ -21,7 +21,23 @@
 letter-spacing: 0px;
 color: #FFFFFF;
 text-transform: uppercase;
-margin-left: 88%;
+ position: absolute;
+ right: 20px;
 font-size: 14px;
 font-weight: 550;
+}
+.cancel{
+    position: absolute;
+    width: 87px;
+height: 40px;
+ 
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 2px solid #007965;
+border-radius: 8px;
+ right: 105px;
+font: normal normal medium 14px/21px Poppins;
+letter-spacing: 0px;
+color: #007965;
+text-transform: uppercase;
+font-weight: 600;
 }

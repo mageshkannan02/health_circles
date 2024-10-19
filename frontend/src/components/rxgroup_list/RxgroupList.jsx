@@ -5,13 +5,13 @@ import renameicon from '../../assets/icons8-rename.svg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import CustomizedSwitches from '../toggle/Toggle'
-const RxgroupList = ({setcreaterx}) => {
+const RxgroupList = ({setIsList}) => {
   return (
      <>
      <div className="rx_group_list_wrapper">
         <div className="head">
             <h5>Rx Group</h5>
-            <img src={addicon} alt=""  onClick={()=>setcreaterx(true)}/>
+            <img src={addicon} alt="" onClick={()=>setIsList(true)}  />
 
         </div>
          <div className="search-input">
