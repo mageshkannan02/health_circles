@@ -132,7 +132,7 @@ background: #ECECEC 0% 0% no-repeat padding-box;
 border-radius: 8px;
 align-items: center;
 margin-left: 20px;
-justify-content: space-between;
+ 
   padding: 10px;
 
   
@@ -150,7 +150,9 @@ background: #FFFFFF 0% 0% no-repeat padding-box;
 border: 1px solid #E2E2E2;
 border-radius: 8px;
 padding: 10px;
- gap: 50px;    
+ 
+     
+ margin-bottom: 10px; 
  
 }
 .drug_show{
@@ -166,33 +168,56 @@ z-index: 1;
 }
 
 .title>table>thead>tr>td{
-     
+       width: 250px;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-weight: 550; /* Medium */
+    font-weight: 550;  
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0px;
+     
+     
+     
     
  
 }
 .title>table>tbody>tr>td{
-     
+      display: flex;
     font: normal normal 600 14px/21px Poppins;
 letter-spacing: 0px;
-color: #0E1824; 
+color: #4D4D4D;
+font-weight: 450;
+width: 250px;
+align-items: center;
+gap: 5px;
+ 
+ 
+ 
+ 
  
 }
+.drug_name{
+    font: normal normal 600 14px/21px Poppins !important;
+    letter-spacing: 0px;
+    color: #0E1824 !important;
+}
  
-.title>table>tbody>tr>td>img{
+.title>table>tbody>tr>.trash_bin{
     position: absolute;
-    right: 20px;
-    top: 15px;
+    width: fit-content !important;
+    right: 30px;
+    padding: 8px;
+    background: #FEEDEE 0% 0% no-repeat padding-box;
+    border-radius: 50%;
+}
+.trash_bin>img{
+    width: 14px;
+    height: 14px;
 }
 .drug_show>ul{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+   
     padding: 0px 15px;
 }
 .drug_show>ul>li{
@@ -208,3 +233,7 @@ color: #0E1824;
     font-weight: 400;
     
 }
+.title>table>tbody>tr>td>span{
+    color: #007965 !important; 
+}
+ 

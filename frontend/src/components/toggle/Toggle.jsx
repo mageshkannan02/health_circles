@@ -53,7 +53,7 @@ export default function CustomizedSwitches() {
     <FormGroup>
       <FormControlLabel
         sx={{ margin: 0 }} // Remove extra margin applied by FormControlLabel
-        control={<Android12Switch defaultChecked />}
+        control={<Android12Switch checked  />}
       />
     </FormGroup>
   );

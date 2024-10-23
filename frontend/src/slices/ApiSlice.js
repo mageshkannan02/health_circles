@@ -39,6 +39,31 @@ export const fetchDrugs = createAsyncThunk("medical/fetchDrugs", async () => {
   const response = await axios.get(`${base_url}/drugs`);
   return response.data;
 });
+export const fetchTiming=createAsyncThunk("timing",async()=>{
+  const response=await  axios.get(`${base_url}/timing`)
+  return response.data
+})
+export const fetchDoses=createAsyncThunk("doses",async()=>{
+  const response=await axios.get(`${base_url}/doses`)
+  return response.data
+})
+export const fetchFrequency=createAsyncThunk("frequency",async()=>{
+  const response=await axios.get(`${base_url}/frequency`)
+  return response.data
+})
+export const fetchPrandial=createAsyncThunk("prandial",async()=>{
+  const response=await axios.get(`${base_url}/prandial`)
+  return response.data
+})
+export const fetchDays=createAsyncThunk("days",async()=>{
+  const response=await axios.get(`${base_url}/days`)
+  return response.data
+})
+export const saveDrugConfiguration = createAsyncThunk('medical/saveDrugConfiguration', async (drugConfig) => {
+ 
+  return drugConfig;
+});
+ 
 
   
 const medicalSlice = createSlice({
@@ -51,8 +76,15 @@ const medicalSlice = createSlice({
     associations: [],
     prescription: [],
     drugs: [],
+    timing:[],
+    doses:[],
+    days:[],
+    prandial:[],
+    frequency:[],
     status: "idle",
     error: null,
+    drugConfigs: {},
+    
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -146,6 +178,77 @@ const medicalSlice = createSlice({
       state.status = "failed";
       state.error = action.error.message;
     });
+    //handle timing
+    builder.addCase(fetchTiming.pending,(state,action)=>{
+      state.status="loading";
+    })
+    builder.addCase(fetchTiming.fulfilled,(state,action)=>{
+      state.status="Succeed",
+      state.timing=action.payload
+    })
+    builder.addCase(fetchTiming.rejected,(state,action)=>{
+      state.status="error";
+      state.error=action.error.message
+    })
+    //handledose
+     
+    builder.addCase(fetchDoses.pending,(state)=>{
+      state.status="loading";
+    })
+    builder.addCase(fetchDoses.fulfilled,(state,action)=>{
+      state.status="Succeed",
+      state.doses=action.payload
+    })
+    builder.addCase(fetchDoses.rejected,(state,action)=>{
+      state.status="error";
+      state.error=action.error.message
+    })
+    //handle frequency
+    builder.addCase(fetchFrequency.pending,(state)=>{
+      state.status="loading";
+    })
+    builder.addCase(fetchFrequency.fulfilled,(state,action)=>{
+      state.status="Succeed",
+      state.frequency=action.payload
+    })
+    builder.addCase(fetchFrequency.rejected,(state,action)=>{
+      state.status="error";
+      state.error=action.error.message
+    })
+    // handleprandial
+    builder.addCase(fetchPrandial.pending,(state)=>{
+      state.status="loading";
+    })
+    builder.addCase(fetchPrandial.fulfilled,(state,action)=>{
+      state.status="Succeed",
+      state.prandial=action.payload
+    })
+    builder.addCase(fetchPrandial.rejected,(state,action)=>{
+      state.status="error";
+      state.error=action.error.message
+    })
+    //handleDays
+    builder.addCase(fetchDays.pending,(state)=>{
+      state.status="loading";
+    })
+    builder.addCase(fetchDays.fulfilled,(state,action)=>{
+      state.status="Succeed",
+      state.days=action.payload
+    })
+    builder.addCase(fetchDays.rejected,(state,action)=>{
+      state.status="error";
+      state.error=action.error.message
+    })
+    //handle saveddrugs
+    .addCase(saveDrugConfiguration.fulfilled, (state, action) => {
+      const { drugId, frequency, timing, prandial,dose ,duration} = action.payload;
+      state.drugConfigs[drugId] = { drugId ,frequency, timing, prandial,dose ,duration};
+    });
+    
+    
+   
+
+
   },
 });
 

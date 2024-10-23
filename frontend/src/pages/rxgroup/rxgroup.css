@@ -1,8 +1,11 @@
 .rx_group_wrapper{
     display: flex;
     flex-direction: column;
+     
 }
 .rx_group_body{
     display: flex;
     margin-top: 20px;
+    
+    height: 100%;
 }

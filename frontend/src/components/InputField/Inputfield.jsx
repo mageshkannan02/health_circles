@@ -1,11 +1,11 @@
 import React from 'react'
 import './input.css'
-const   Inputfield = ({label,placeholder,onchange,asterix,type}) => {
+const   Inputfield = ({label,placeholder,handledoctordata,asterix,type,name}) => {
    if(type==="textarea"){
     return (
       <div className="input-div">
       <label htmlFor="">{label}<span>{asterix}</span></label>
-      <textarea   placeholder={placeholder} onchange={onchange} />
+      <textarea   placeholder={placeholder} onChange={handledoctordata} name={name} />
       </div> 
     )
    
@@ -14,7 +14,7 @@ const   Inputfield = ({label,placeholder,onchange,asterix,type}) => {
     return (
       <div className="input-div">
       <label htmlFor="">{label}<span>{asterix}</span></label>
-      <input type={type==="date"?"date":"text"} placeholder={placeholder} onchange={onchange} />
+      <input type={type==="date"?"date":"text"} placeholder={placeholder} onChange={handledoctordata} name={name}/>
       </div>
     )
    }

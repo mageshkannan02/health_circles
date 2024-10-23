@@ -1,3 +1,5 @@
+const { where } = require('sequelize');
+
 const {
   doctors,
   drug_catagory_master,
@@ -15,6 +17,8 @@ const {
   status_master,
   rx_group_drugs,
   sequelize,
+  doctors_info,
+  days_master,
 } = require('../../models');
 
 const gethospitals = async (req, res) => {
@@ -102,6 +106,18 @@ const get_drugs = async (req, res) => {
           model: drug_catagory_master,
           as: 'drug_catagery',
         },
+        {
+          model: medicine_timing_master,
+          as: 'drug_timing',
+        },
+        {
+          model: medicine_frequency_master,
+          as: 'drug_frequency',
+        },
+        {
+          model: medicine_prandial__master,
+          as: 'drug_prandial',
+        },
       ],
     });
     res.status(200).send(response);
@@ -110,6 +126,54 @@ const get_drugs = async (req, res) => {
 
     console.log(error);
   }
+};
+const post_doctors = async (req, res) => {
+  console.log(req.body);
+  const { workingAt, speciality, languages } = req.body;
+
+  const result = sequelize.transaction(async (t) => {
+    try {
+      const data = await doctors.create(req.body, { transaction: t });
+      res.status(200).send(data);
+
+      await Promise.all(
+        workingAt.map((working) => {
+          return doctors_info.create(
+            {
+              doctor_id: data.id,
+              working_at_id: working,
+            },
+            { transaction: t }
+          );
+        })
+      );
+      await Promise.all(
+        languages.map((language) => {
+          return doctors_info.create(
+            {
+              doctor_id: data.id,
+              languages_id: language,
+            },
+            { transaction: t }
+          );
+        })
+      );
+      await Promise.all(
+        speciality.map((special) => {
+          return doctors_info.create(
+            {
+              doctor_id: data.id,
+              speciality_id: special,
+            },
+            { transaction: t }
+          );
+        })
+      );
+    } catch (error) {
+      res.status(500).send({ error: error });
+      console.log(error);
+    }
+  });
 };
 const post_drugs = async (req, res) => {
   const { dose_id } = req.body;
@@ -145,19 +209,30 @@ const post_rx_groups = async (req, res) => {
   const t = await sequelize.transaction();
 
   try {
-    const data = await rx_groups.bulkCreate(req.body, { transaction: t });
-
-    await Promise.all(
-      data.map((rxgroup) => {
-        return rx_group_drugs.create(
-          {
-            rx_group_id: rxgroup.id,
-            drug_id: rxgroup.drug_id,
-          },
-          { transaction: t }
-        );
-      })
+    const data = await rx_groups.create(
+      {
+        name: req.body.name,
+      },
+      { transaction: t }
     );
+    await rx_group_drugs.create(
+      {
+        rx_group_id: data.id,
+      },
+      { transaction: t }
+    );
+
+    // await Promise.all(
+    //   data.map((rxgroup) => {
+    //     return rx_group_drugs.create(
+    //       {
+    //         rx_group_id: rxgroup.id,
+    //         drug_id: rxgroup.drug_id,
+    //       },
+    //       { transaction: t }
+    //     );
+    //   })
+    // );
 
     await t.commit();
     res.send(data);
@@ -165,6 +240,143 @@ const post_rx_groups = async (req, res) => {
     console.log(error);
     await t.rollback();
     return res.status(500).json({ error: error });
+  }
+};
+const get_days = async (req, res) => {
+  try {
+    const response = await days_master.findAll();
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send({ messege: error });
+  }
+};
+const post_rxGroups_with_drugs = async (req, res) => {
+  const { Alldrugs, rxgroupId } = req.body;  
+
+  try {
+    
+
+     
+    await Promise.all(Alldrugs.map(async (drug) => {
+      const { id: drugId, doses = [], frequencies = [], prandials = [], timings = [] } = drug;
+
+      
+      if (!drugId) {
+        console.error("Missing drugId for drug:", drug);
+        return;
+      }
+
+       
+      const existingEntry = await rx_group_drugs.findOne({
+        where: { rx_group_id: rxgroupId, drug_id: drugId }
+      });
+
+       
+      if (!existingEntry) {
+        await rx_group_drugs.create({
+          rx_group_id: rxgroupId,
+          drug_id: drugId,
+        });
+
+         
+        if (Array.isArray(doses) && doses.length > 0) {
+          await Promise.all(doses.map(doseItem => 
+            rx_group_drugs.create({  
+              rx_group_id: rxgroupId,
+              drug_id: drugId,
+              dose_id: doseItem.id  
+            })
+          ));
+        }
+
+         
+        if (Array.isArray(frequencies) && frequencies.length > 0) {
+          await Promise.all(frequencies.map(freqItem => 
+            drugs.create({  
+              id: drugId,
+              drug_frequency_id: freqItem.id  
+            }, )
+          ));
+        }
+ 
+        if (Array.isArray(prandials) && prandials.length > 0) {
+          await Promise.all(prandials.map(pranItem => 
+            drugs.create({  
+              id: drugId,
+              drug_prandial_id: pranItem.id  
+            },)
+          ));
+        }
+
+        
+        if (Array.isArray(timings) && timings.length > 0) {
+          await Promise.all(timings.map(timeItem => 
+            drugs.create({  
+              id: drugId,
+              drug_timing_id: timeItem.id  
+            }, )
+          ));
+        }
+      } else {
+        if (Array.isArray(prandials) && prandials.length > 0) {
+          await Promise.all(prandials.map(pranItem => 
+            drugs.update({  
+              id: drugId,
+              drug_prandial_id: pranItem.id  
+            },)
+          ));
+        }
+        if (Array.isArray(timings) && timings.length > 0) {
+          await Promise.all(timings.map(timeItem => 
+            drugs.update({  
+              
+              drug_timing_id: timeItem.id 
+            },{where:{  id: drugId,}})
+          ));
+        }
+        if (Array.isArray(frequencies) && frequencies.length > 0) {
+          await Promise.all(frequencies.map(freqItem => 
+            drugs.update({  
+            
+              drug_frequency_id: freqItem.id  
+            },{where:{  id: drugId,}})
+          ));
+        }
+      }
+    }));
+
+    res.send("Data processed successfully");
+  } catch (error) {
+    console.error("Error processing data:", error);
+    res.status(500).send("Error processing data");
+  }
+};
+
+
+
+
+const getSpecific_rxGroups = async (req, res) => {
+  const { rxgroupid } = req.query;
+
+  try {
+    const rxgroupdata = await rx_groups.findOne({
+      where: {
+        id: rxgroupid,
+      },
+      include: [
+        {
+          model: drugs,
+          as: 'drugs',
+        },
+      ],
+    });
+    if (rxgroupdata) {
+      return res.send(rxgroupdata);
+    } else {
+      return res.status(404).send({ message: 'No Rx Group Found' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error });
   }
 };
 
@@ -278,4 +490,8 @@ module.exports = {
   post_rx_associations,
   post_drugs,
   post_presription,
+  post_doctors,
+  post_rxGroups_with_drugs,
+  getSpecific_rxGroups,
+  get_days,
 };

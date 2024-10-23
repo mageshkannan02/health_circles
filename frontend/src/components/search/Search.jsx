@@ -36,7 +36,7 @@ export default function LimitTags({
   label,
   placeholder,
   asterix,
-  count_info,
+  count_info,handleArraydoctors,name
 }) {
   const dispatch = useDispatch();
   const [selectedItems, setSelectedItems] = useState([]);
@@ -57,10 +57,13 @@ export default function LimitTags({
 
   const handleChange = (event, newValue) => {
     setSelectedItems(newValue);
+    const selectedIds=newValue.map(item=>item.id)
+    handleArraydoctors(name,selectedIds)
   };
 
   const cancel = () => {
     setSelectedItems([]);
+    handleArraydoctors(name,[])
   };
 
   return (

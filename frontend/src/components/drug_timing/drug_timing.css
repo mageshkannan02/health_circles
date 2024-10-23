@@ -1,7 +1,7 @@
 .drug_timing_wrapper{
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 68%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -32,9 +32,9 @@ border-radius: 8px;
 .prandial_div{
     display: flex;
     flex-direction: column;
-   padding: 0px 25px;
+   padding: 0px 22px;
     align-items: center;
-    border-right: 2px solid #F6F6F6;
+    border-left: 2.5px solid #F6F6F6;
     height: 80px;
 }
 .prandial_selection_div{

@@ -17,6 +17,13 @@ module.exports = {
           key:'id'
         }
       },
+      day_id:{
+        type: Sequelize.INTEGER,
+        references:{
+          model:'days_masters',
+          key:'id'
+        }
+      },
       name: {
         type: Sequelize.STRING
       },

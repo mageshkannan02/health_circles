@@ -6,7 +6,7 @@ import RxGroup_nav from '../rx_group_nav/RxGroup_nav'
 import Create_rxGroup from "../../components/create_rxGroup/Create_rxGroup";
 
 
-const Rxgroup_empty = ({setRxgroupName}) => {
+const Rxgroup_empty = ({setRxgroupName,setGroupName}) => {
 
   const [popactive,setPopActive]=useState(false)
  
@@ -35,7 +35,7 @@ const Rxgroup_empty = ({setRxgroupName}) => {
       {
         popactive && 
 
-      <Create_rxGroup  name={"RENAME RX GROUP"}  setPopActive={setPopActive} setRxgroupName={setRxgroupName}   
+    <Create_rxGroup  name={"CREATE RX GROUP"}  setPopActive={setPopActive} setRxgroupName={setRxgroupName}  setGroupName={setGroupName}   
               
               
             />

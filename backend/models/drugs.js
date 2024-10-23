@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'drug_frequency',
       });
 
-      this.belongsTo(models.medicine_frequency_master, {
+      this.belongsTo(models.medicine_prandial__master, {
         foreignKey: 'drug_prandial_id',
         as: 'drug_prandial',
       });
@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey:'drug_id',
             as:'prescriptions'
 
+        })
+        this.belongsTo(models.days_master,{
+          foreignKey:'day_id',
+          as:'daysmaster'
         })
 
       
@@ -55,6 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       drug_timing_id: DataTypes.INTEGER,
       drug_frequency_id: DataTypes.INTEGER,
       drug_prandial_id: DataTypes.INTEGER,
+      day_id:DataTypes.INTEGER,
       is_active: DataTypes.BOOLEAN,
       created_by: DataTypes.UUID,
       updated_by: DataTypes.UUID,

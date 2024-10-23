@@ -1,54 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LimitTags from "../search/Search";
 import "./doctor_info.css";
 import Inputfield from "../InputField/Inputfield";
+ 
 
-const Doctor_info = () => {
+
+const Doctor_info = ({setDoctordata}) => {
+  const [doc_data,setdoc_data]=useState(
+   {
+       name:"",
+       qualification:"",
+       workingAt:[],
+       speciality:[],
+       serving_from:"",
+       address:"",
+       languages:[],
+       about:""
+
+  })
+
+ useEffect(()=>{
+  setDoctordata(doc_data)
+ },[doc_data])
+  
+  const handledoctordata=(e)=>{
+    const {name,value}=e.target;
+    setdoc_data((prev)=>{
+      return {
+
+        ...prev,[name]:value
+      }
+      
+    })
+  } 
+  const handleArraydoctors=(name,newvalue)=>{
+    setdoc_data((prev)=>{
+          return{
+            ...prev,[name]:newvalue
+          }
+        })
+  }
+
   return (
     <>
       <div className="info-wrapper">
         <Inputfield
-          label={"Name"}
+          label={"Name"} name={"name"}
           asterix={"*"}
-          placeholder={"Enter the name"}
+          placeholder={"Enter the name"} handledoctordata={handledoctordata}
         />
         <Inputfield
           label={"Qualification"}
-          asterix={"*"}
-          placeholder={"Enter your qualification"}
+          asterix={"*"} name={"qualification"}
+          placeholder={"Enter your qualification"} handledoctordata={handledoctordata}
         />
 
         <LimitTags
           label={"Working At"}
-          asterix={"*"}
-          placeholder={"Hospitals, Clinic, etc"} count_info={"Places Added"} count={0}
+          asterix={"*"} name={"workingAt"}
+          placeholder={"Hospitals, Clinic, etc"} count_info={"Places Added"}  handleArraydoctors={handleArraydoctors}
         />
 
         <LimitTags
           label={"Specialitity"}
-          asterix={"*"}
-          placeholder={"Enter your specialitity"} count_info={"Speciality Added"} count={0}
+          asterix={"*"} name={"speciality"}
+          placeholder={"Enter your specialitity"} count_info={"Speciality Added"} handleArraydoctors={handleArraydoctors}
         />
         
         <Inputfield
           label={"Serving From"}
-          asterix={"*"}
-          placeholder={"Enter the date"} type={"date"}
+          asterix={"*"} name={"serving_from"}
+          placeholder={"Enter the date"} type={"date"} handledoctordata={handledoctordata}
         />
         <Inputfield
           label={"Address"}
-           
-          placeholder={"Enter your address"} type={"textarea"}
+           name={"address"}
+          placeholder={"Enter your address"} type={"textarea"} handledoctordata={handledoctordata}
         />
         <LimitTags
           label={"Languages Known"}
-          asterix={"*"}
-          placeholder={"Enter the languages"} count_info={"Languages Added"} count={0}
+          asterix={"*"} name={"languages"}
+          placeholder={"Enter the languages"} count_info={"Languages Added"} handleArraydoctors={handleArraydoctors}
         />
         <Inputfield
           label={"About"}
-           
-          placeholder={"About yourself"} type={"textarea"}
+           name={"about"}
+          placeholder={"About yourself"} type={"textarea"} handledoctordata={handledoctordata}
         />
         
       </div>

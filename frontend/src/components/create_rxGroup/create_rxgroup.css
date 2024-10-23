@@ -1,9 +1,10 @@
 .create_rx_group_bg {
   position: fixed;
-  width: 65%;
+  top: 0;
+  width: 66%;
   height: 100%;
    background-color: rgba(0, 0, 0, 0.1);
- 
+  z-index: 9999;
   display: flex;
     
   align-items: center;
@@ -20,10 +21,13 @@
   border: 1px solid #e3e3e3;
   border-radius: 8px;
   position: relative;
+ 
+  
 }
 .create_rxgroup_body {
   display: flex;
   flex-direction: column;
+  
    
 }
 .create_rxgroup_body{

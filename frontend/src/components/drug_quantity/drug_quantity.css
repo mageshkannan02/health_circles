@@ -1,11 +1,11 @@
 .drug_quantity_wrapper{
     position: fixed;
-    background-color: rgba(0, 0,0, 0.5);
-    width: 100%;
+    background-color: rgba(0, 0,0, 0.2);
+    width: 68%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+     
    
      
 }
@@ -19,6 +19,7 @@ border: 1px solid #E3E3E3;
 border-radius: 8px;
 display: flex;
 flex-direction: column;
+top: 170px;
 
  
  
@@ -82,7 +83,7 @@ margin: 0;
      
 }
  
-.days_filter>.days_active{
+.days_active{
     background: #007965 0% 0% no-repeat padding-box !important;
 border-radius: 8px;
 padding: 5px 10px;

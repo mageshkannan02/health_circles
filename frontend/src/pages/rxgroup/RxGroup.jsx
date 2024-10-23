@@ -7,49 +7,70 @@ import RxgroupList from "../../components/rxgroup_list/RxgroupList";
 import RxGroupInfo from "../../components/rx_group_info/RxGroupInfo";
 import Rxgroup_empty from "../../components/empty/Rxgroup_empty";
 import AddRxgroups from "../../components/add_rxgroups/AddRxgroups";
+import axios from "axios";
 
 const RxGroup = () => {
-  const [rxlist,setRxlist]=useState(false)
-  const [rxgroupanme,setRxgroupName]=useState(null)
-console.log(rxlist);
+  const baseurl = "http://localhost:4000/health";
+  const [rxlist, setRxlist] = useState(false);
+  const [addDrug, setAddDrug] = useState(false);
+  const [selectedrxgroupId, setSelectedrxgroupId] = useState("");
 
- useEffect(()=>{
-  if(rxgroupanme!==null){
-setRxlist(true)
+  const [rxgroupname, setRxgroupName] = useState(null);
+  const [rxgroupId,setrxgroupId]=useState(null)
 
-  }
- },[rxgroupanme])
-    
+  const dispath = useDispatch();
+  const rxgroups = useSelector((state) => state.medical.rxGroups);
+
+  useEffect(() => {
+    dispath(fetchRxGroups());
+  },[dispath,rxgroupname]);
+
+  useEffect(() => {
+    if (rxgroupname !== null) {
+      setRxlist(true);
+
+      const postrxgroup = async () => {
+        try {
+          const data = await axios.post(`${baseurl}/addrxgroups`, {
+            name: rxgroupname,
+          });
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      postrxgroup();
+    }
+  }, [rxgroupname]);
 
   return (
     <div className="rx_group_wrapper container-md col-8">
-        
-        {
-            rxlist ?(
-              <>
- <RxGroup_nav />
- <div className="rx_group_body">
- 
- <RxgroupList />
-            <RxGroupInfo />
- </div>
-            </>
-            ) :(
-              <>
-              <RxGroup_nav />
-              <Rxgroup_empty  setRxgroupName={setRxgroupName} />
-              </>
-              
-            )
-        }
-          
-            
-          
-        
-        
+      {rxgroups.length > 0 && !addDrug ? (
+        <>
+          <RxGroup_nav />
+          <div className="rx_group_body">
+            <RxgroupList
+              rxgroups={rxgroups} setrxgroupId={setrxgroupId}
+              setSelectedrxgroupId={setSelectedrxgroupId}
+              setRxgroupName={setRxgroupName} selectedrxgroupId={selectedrxgroupId}
+            />
+            <RxGroupInfo
+              setAddDrug={setAddDrug}
+              selectedrxgroupId={selectedrxgroupId}
+            />
+          </div>
+        </>
+      ) : addDrug ? (
+        <AddRxgroups setAddDrug={setAddDrug} rxgroupId={rxgroupId}/>
+      ) : (
+        <>
+          <RxGroup_nav />
+          <Rxgroup_empty setRxgroupName={setRxgroupName} />
+        </>
+      )}
     </div>
   );
 };
- 
 
 export default RxGroup;

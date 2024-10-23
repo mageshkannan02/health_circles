@@ -1,11 +1,11 @@
 .drug_frequency_wrapper {
-  width: 100%;
+  width: 68%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .drug_frequency_body {
   position: relative;
@@ -33,7 +33,7 @@
   color: #0e1824;
   margin: 0;
 }
-.choose_div_items > .active_frequency {
+.active_frequency {
   width: fit-content;
 
   padding: 7px 12px;
